@@ -2,7 +2,7 @@ import openai
 
 openai.api_key = 'gpt-key'
 client = openai.Client(api_key='gpt-key')
-
+print("hello")
 PROFANITY_FILTER = ["fuck", "shit", "ㅅㅂ"]  # 욕설 입력 필터링
 
 def generate_explanation(word, meaning):
