@@ -6,16 +6,17 @@ from flask_pymongo import PyMongo
 import db
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb+srv://qaz8457:WlS6yzJyO93b4JLP@boca.dm5skx7.mongodb.net/"
-
+mongo_connect = "mongodb+srv://qaz8457:WlS6yzJyO93b4JLP@boca.dm5skx7.mongodb.net/?retryWrites=true&w=majority&appName=boca"
+#app.config["MONGO_URI"] = "mongodb+srv://qaz8457:WlS6yzJyO93b4JLP@boca.dm5skx7.mongodb.net/"
+app.config["MONGO_URI"] = mongo_connect
 
 # Create a connection to the MongoDB server
-mongo_connect = "mongodb+srv://qaz8457:WlS6yzJyO93b4JLP@boca.dm5skx7.mongodb.net/?retryWrites=true&w=majority&appName=boca"
+
 client = MongoClient(mongo_connect)
 mongo = PyMongo(app)
 # Select the database
 db = client.boca
-collection = db.users
+collection = db.boca
 
 words = []
 meanings = []
@@ -58,7 +59,7 @@ def index():
             print(words)    
             print(meanings) 
              # Insert the data into the MongoDB
-            #db.users.insert_one({"_id": word, "name": meaning})
+            db.users.insert_one({"_id": word, "name": meaning})
             return '성공'
         else:
             return 'Invalid data', 400
@@ -67,7 +68,7 @@ def index():
 @app.route('/check', methods=['GET'])
 def check():
     # Query the MongoDB
-    words = mongo.db.users.find()
+    words = db.users.find()
 
     # Print the results
     for word in words:
