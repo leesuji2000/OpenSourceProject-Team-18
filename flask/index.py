@@ -6,11 +6,11 @@ from flask_pymongo import PyMongo
 import db
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb+srv://qaz8457:WlS6yzJyO93b4JLP@boca.dm5skx7.mongodb.net/"
+app.config["MONGO_URI"] = "mongodb+srv://qaz8457:passwordP@boca.dm5skx7.mongodb.net/"
 
 
 # Create a connection to the MongoDB server
-mongo_connect = "mongodb+srv://qaz8457:WlS6yzJyO93b4JLP@boca.dm5skx7.mongodb.net/?retryWrites=true&w=majority&appName=boca"
+mongo_connect = "mongodb+srv://qaz8457:password@boca.dm5skx7.mongodb.net/?retryWrites=true&w=majority&appName=boca"
 client = MongoClient(mongo_connect)
 mongo = PyMongo(app)
 # Select the database
