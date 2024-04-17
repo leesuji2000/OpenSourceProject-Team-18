@@ -7,16 +7,86 @@
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
 </head>
 <body>
-    <h1>암기에 도움이 되셨나요?</h1>
-    <div style="display: inline-block; margin-right: 10px;" >
-        <button class="feedback-button">Good</button>
-        <button class="feedback-button">Not Bad</button>
-        <button class="feedback-button">Bad</button>
+    <div class="answer">  
+        <h1>Boca Database</h1>
+        <p>영어단어: {{ data.english_word }}</p>
+        <p>뜻: {{ data.meaning }}</p>
+        <p>연상기억법: {{ data.associative_memory }}</p>
     </div>
-   
-    <br>
-    <textarea id="feedback-text" rows="4" cols="50" placeholder="피드백을 남겨주시면 더  나은 서비스에 도움이 됩니다."></textarea>
-    <br>
-    <input type="submit" value="피드백 보내기">
+
+    <div class="feedback" style="margin: 20px; padding: 20px; background-color: lightgrey; border-radius: 10px;">
+        <form action="/feedback" method="post">
+            <h3>암기에 도움이 되셨나요?</h3>
+            <div style="display: inline-block; margin-right: 10px;" >
+                <button type="submit" name="score" value="100" class="feedback-button">Good</button>
+                <button type="submit" name="score" value="50" class="feedback-button">Not Bad</button>
+                <button type="submit" name="score" value="0" class="feedback-button">Bad</button>
+            </div>
+        
+            <br>
+           
+            <textarea id="feedback-text" name="feedback-text" rows="4" cols="50" placeholder="피드백을 남겨주시면 더  나은 서비스에 도움이 됩니다." ></textarea>
+            
+            
+            <br>
+            <input type="submit" class="feedback-submit" name="feedback-submit" value="피드백 보내기">
+        </form>
+            
+
+    </div>
+    <form action="/feedback" method="post">
+    <a href="/" class="button">home으로 돌아가기</a>
+    </form>
+
+    
 </body>
 </html>
+
+<style>
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .button:hover {
+        background-color: #0056b3;
+    }
+
+    .feedback-submit{
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: orange;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .feedback-submit:hover {
+        background-color: #ff8c00;
+    }   
+
+    .feedback-button:hover {
+        background-color: #ff8c00;
+
+    }
+    .feedback-button {
+    background-color: #007BFF; /* Default background color */
+    color: white; /* Default text color */
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.feedback-button:active {
+    background-color: #ff8c00; /* Background color when button is clicked */
+    color: white; /* Text color when button is clicked */
+}
+    </style>

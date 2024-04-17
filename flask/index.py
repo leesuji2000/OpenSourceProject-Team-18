@@ -1,25 +1,26 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, redirect, url_for, render_template
 import re
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from flask_pymongo import PyMongo
-import db
+
 
 app = Flask(__name__)
 mongo_connect = "mongodb+srv://qaz8457:WlS6yzJyO93b4JLP@boca.dm5skx7.mongodb.net/?retryWrites=true&w=majority&appName=boca"
-#app.config["MONGO_URI"] = "mongodb+srv://qaz8457:WlS6yzJyO93b4JLP@boca.dm5skx7.mongodb.net/"
 app.config["MONGO_URI"] = mongo_connect
 
 # Create a connection to the MongoDB server
-
 client = MongoClient(mongo_connect)
 mongo = PyMongo(app)
 # Select the database
 db = client.boca
-collection = db.boca
+
 
 words = []
 meanings = []
+scores = []
+feedbacks = []
+
 
 
 
@@ -59,10 +60,20 @@ def index():
             print(words)    
             print(meanings) 
              # Insert the data into the MongoDB
-            db.users.insert_one({"_id": word, "name": meaning})
-            return '성공'
+            existing_word = db.baca.find_one({"_id": word})
+            if existing_word:
+                return redirect(url_for('feedback', word=word))  
+            else: 
+                db.users.insert_one({"_id": word, "name": meaning})
+            return redirect(url_for('feedback', word=word, meaning=meaning)) 
         else:
-            return 'Invalid data', 400
+            return '''
+                <script type="text/javascript">
+                    alert("공백은 허용하지 않는다");
+                    window.location.href = "/";
+                </script>
+                ''', 400
+    
     return render_template('index.html')
 
 @app.route('/check', methods=['GET'])
@@ -74,13 +85,26 @@ def check():
     for word in words:
         print(word)
 
-    return 'Check console for output', 200
+    return '콘솔에서 DB 확인하셈', 200
 
 @app.route('/feedback', methods=['GET', 'POST'])
 def feedback():
+    data = None
+    if request.method == 'GET':
+        word = request.args.get('word')
+        meaning = request.args.get('meaning')
+        data = {
+            'english_word': word,
+            'meaning': meaning
+        }
+    
     if request.method == 'POST':
-        # Handle the feedback submission here
-        pass
-    return render_template('feedback.html')
+        score = request.form.get('score')
+        feedback = request.form.get('feedback-text')
+        scores.append(score)
+        feedbacks.append(feedback)
+        print(scores)   
+        print(feedbacks)         
+    return render_template('feedback.html', data=data)
 
-app.run(port=5000)
+app.run(port=5000, debug=True)
