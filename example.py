@@ -3,11 +3,8 @@ import os
 from dotenv import load_dotenv #코드를 받아서 빌드하는 방법 사용
 
 
-
 load_dotenv()  # take environment variables from .env.
 gpt_key = os.getenv('GPT_KEY')
-print(gpt_key)
-
 openai.api_key = gpt_key
 client = openai.Client(api_key=gpt_key)
 
