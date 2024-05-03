@@ -87,10 +87,14 @@ def index():
 def check():
     # Query the MongoDB
     words = db.users.find()
+    feedbacks = db.feedback.find()
 
     # Print the results
     for word in words:
         print(word)
+    for feedback in feedbacks:
+        print(feedback)
+    
 
     return '콘솔에서 DB 확인하셈', 200
 
@@ -115,6 +119,7 @@ def feedback():
         feedbacks.append(feedback)
         print(scores)   
         print(feedbacks)         
+        db.feedback.insert_one({"score": score, "feedback": feedback})
     return render_template('feedback.html', data=data)
 
 app.run(port=5000, debug=True)
