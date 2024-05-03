@@ -3,7 +3,14 @@ import re
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from flask_pymongo import PyMongo
+import os
+import sys
 
+
+# print the current working directory
+print("Current working directory:", os.getcwd())
+# print the PYTHONPATH
+print("PYTHONPATH:", sys.path)
 
 app = Flask(__name__)
 mongo_connect = "mongodb+srv://qaz8457:WlS6yzJyO93b4JLP@boca.dm5skx7.mongodb.net/?retryWrites=true&w=majority&appName=boca"
@@ -87,15 +94,18 @@ def check():
 
     return '콘솔에서 DB 확인하셈', 200
 
+import example
 @app.route('/feedback', methods=['GET', 'POST'])
 def feedback():
     data = None
+    
     if request.method == 'GET':
         word = request.args.get('word')
         meaning = request.args.get('meaning')
         data = {
             'english_word': word,
-            'meaning': meaning
+            'meaning': meaning,
+            'associative_memory': '연상기업법 결과' # example.explanation
         }
     
     if request.method == 'POST':
