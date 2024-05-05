@@ -30,8 +30,8 @@ def generate():
 
 
 def generate_explanation(word, meaning):
-    if word.lower() in PROFANITY_FILTER:
-        return "Sorry, I can't assist with that."
+    # if word.lower() in PROFANITY_FILTER:
+    #     return "Sorry, I can't assist with that."
 
     completion = client.chat.completions.create( 
         model="gpt-3.5-turbo",

@@ -3,15 +3,10 @@ import re
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from flask_pymongo import PyMongo
-import os
-import sys
+
 import example
 
 
-# print the current working directory
-print("Current working directory:", os.getcwd())
-# print the PYTHONPATH
-print("PYTHONPATH:", sys.path)
 
 app = Flask(__name__)
 mongo_connect = "mongodb+srv://qaz8457:WlS6yzJyO93b4JLP@boca.dm5skx7.mongodb.net/?retryWrites=true&w=majority&appName=boca"
@@ -28,6 +23,8 @@ words = []
 meanings = []
 scores = []
 feedbacks = []
+prohibited_words = ['sibal', 'ㅅㅂ', 'ㄱㅆㄲ', 'asshole', 'fuck']
+
 
 
 
@@ -37,6 +34,13 @@ def index():
     if request.method == 'POST':
         word = request.form.get('word')
         meaning = request.form.get('meaning')
+        if any(prohibited_word in word for prohibited_word in prohibited_words) or any(prohibited_word in meaning for prohibited_word in prohibited_words):
+            return '''
+            <script type="text/javascript">
+                alert("욕하지 마라");
+                window.location.href = "/";
+            </script>
+            ''', 400
         if ' ' in word or ' ' in meaning:
             return '''
             <script type="text/javascript">
@@ -68,9 +72,9 @@ def index():
             print(words)    
             print(meanings) 
              # Insert the data into the MongoDB
-            existing_word = db.boca.find_one({"word": word})
+            existing_word = db.bocas.find_one({"word": word})
             if existing_word:
-                return redirect(url_for('feedback', word=word))  
+                return redirect(url_for('feedback', word=word, meaning=meaning, associative_memory=existing_word['associative_memory']))
             else: 
                 db.boca.insert_one({"word": word, "meaning": meaning})
             return redirect(url_for('feedback', word=word, meaning=meaning)) 
