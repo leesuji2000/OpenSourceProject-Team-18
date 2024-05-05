@@ -11,7 +11,7 @@
         <p>영어단어: {{ data.english_word }}</p>
         <p>뜻: {{ data.meaning }}</p>
         <p>연상기억법: {{ data.associative_memory }}</p>
-        <p>예문: {{ data.sentence }}</p>
+        
     </div>
 
     <div class="feedback" style="margin: 20px; padding: 20px; background-color: lightgrey; border-radius: 10px;">
@@ -26,7 +26,7 @@
                 <label for="poor" class="feedback-button">Bad</label>
             </div>
             <br>
-            <textarea id="feedback-text" name="feedback-text" rows="4" cols="50" placeholder="Please leave feedback to help us provide better service." ></textarea>
+            <textarea id="feedback-text" name="feedback-text" rows="4" cols="50" placeholder="피드백을 남겨주시면 서비스에 큰 도움이 됩니다." ></textarea>
             <br>
             <input type="submit" class="feedback-submit" name="feedback-submit" value="Post Feedback">
         </form>
@@ -36,3 +36,25 @@
     </form>
 </body>
 </html>
+
+<style>
+  
+
+    .answer {
+       text-align: center; /* Center the text */
+       font-family: Arial, sans-serif; /* Use a neat-looking font */
+       color: #333; /* Dark gray color for the text */
+       padding: 20px; /* Add some space around the text */
+       margin: auto; /* Center the div itself if it has a specified width */
+       width: 50%; /* Specify a width if you want to center the div itself */
+       box-shadow: 0px 0px 10px rgba(0,0,0,0.1); /* Optional: Add a subtle shadow for a "card" effect */
+   }
+   
+   .answer h1 {
+       margin-bottom: 20px; /* Add some space below the title */
+   }
+   
+   .answer p {
+       margin-bottom: 10px; /* Add some space between paragraphs */
+   } 
+     </style>

@@ -5,6 +5,7 @@ from pymongo import MongoClient
 from flask_pymongo import PyMongo
 import os
 import sys
+import example
 
 
 # print the current working directory
@@ -67,11 +68,11 @@ def index():
             print(words)    
             print(meanings) 
              # Insert the data into the MongoDB
-            existing_word = db.baca.find_one({"_id": word})
+            existing_word = db.boca.find_one({"word": word})
             if existing_word:
                 return redirect(url_for('feedback', word=word))  
             else: 
-                db.users.insert_one({"_id": word, "name": meaning})
+                db.boca.insert_one({"word": word, "meaning": meaning})
             return redirect(url_for('feedback', word=word, meaning=meaning)) 
         else:
             return '''
@@ -109,8 +110,9 @@ def feedback():
         data = {
             'english_word': word,
             'meaning': meaning,
-            'associative_memory': '연상기업법 결과' # example.explanation
+            'associative_memory': example.generate_explanation(word, meaning)
         }
+        db.bocas.insert_one({"word": word, "meaning": meaning, "associative_memory": data['associative_memory']})
     
     if request.method == 'POST':
         score = request.form.get('score')
@@ -119,7 +121,7 @@ def feedback():
         feedbacks.append(feedback)
         print(scores)   
         print(feedbacks)         
-        db.feedback.insert_one({"score": score, "feedback": feedback})
+        db.feedback.insert_one({ "score": score, "feedback": feedback})
     return render_template('feedback.html', data=data)
 
 app.run(port=5000, debug=True)
