@@ -56,14 +56,14 @@ def index():
             except:
                 return '''
                 <script type="text/javascript">
-                    alert("영어란엔 영어로 써라");
+                    alert("영어란엔 영어 똑바로 써라");
                     window.location.href = "/";
                 </script>
                 ''', 400
             if not re.match("[가-힣]+", meaning):
                 return '''
                 <script type="text/javascript">
-                    alert("뜻은 한국어로 써라");
+                    alert("뜻에 한국어로 똑바로 써라");
                     window.location.href = "/";
                 </script>
                 ''', 400
@@ -73,6 +73,7 @@ def index():
             print(meanings) 
              # Insert the data into the MongoDB
             existing_word = db.bocas.find_one({"word": word})
+            
             if existing_word:
                 return redirect(url_for('feedback', word=word, meaning=meaning, associative_memory=existing_word['associative_memory']))
             else: 
@@ -103,7 +104,7 @@ def check():
 
     return '콘솔에서 DB 확인하셈', 200
 
-import example
+
 @app.route('/feedback', methods=['GET', 'POST'])
 def feedback():
     data = None
@@ -111,12 +112,20 @@ def feedback():
     if request.method == 'GET':
         word = request.args.get('word')
         meaning = request.args.get('meaning')
-        data = {
-            'english_word': word,
-            'meaning': meaning,
-            'associative_memory': example.generate_explanation(word, meaning)
-        }
-        db.bocas.insert_one({"word": word, "meaning": meaning, "associative_memory": data['associative_memory']})
+        existing_word = db.bocas.find_one({"word": word})
+        if existing_word:
+            data = {
+                'english_word': word,
+                'meaning': meaning,
+                'associative_memory': existing_word['associative_memory']
+            }
+        else:
+            data = {
+                'english_word': word,
+                'meaning': meaning,
+                'associative_memory': example.generate_explanation(word, meaning)
+            }
+            db.bocas.insert_one({"word": word, "meaning": meaning, "associative_memory": data['associative_memory']})
     
     if request.method == 'POST':
         score = request.form.get('score')
