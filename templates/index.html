@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>단어장</title>
+  <meta charset="utf-8">  
+
+  <link rel="stylesheet" type="text/css" href="/static/styles.css">
+<body>
+  
+
+<h2>외워야 할 단어와 뜻을 입력하세요.</h2>
+
+<form action="/" method="post">
+
+  <input type="text" id="word" name="word" placeholder="영어단어를 입력하시오"><br>
+  
+  <input type="text" id="meaning" name="meaning" placeholder="뜻을 입력하시오"><br>
+  <input type="submit" class="result-submit" value="연상기억법 확인하기">
+</form> 
+<p></p>
+<p> "연상기억법 확인하기"를 누르고 심호흡 3번만 하시면 결과를 보실 수 있습니다. </p>
+<p> 조금 시간이 걸린다는 소리예요. </p>
+
+</body>
+</html>
+
+<style>
+  
+
+  .result-submit{
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: orange;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+  }
+  .result-submit:hover {
+      background-color: #ff8c00;
+  }   
+  </style>

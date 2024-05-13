@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Feedback</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+    <div class="answer">
+        <h1>Boca Database</h1>
+        <p>영어단어: {{ data.english_word }}</p>
+        <p>뜻: {{ data.meaning }}</p>
+        <p>연상기억법: {{ data.associative_memory }}</p>
+        
+    </div>
+
+    <div class="feedback" style="margin: 20px; padding: 20px; background-color: lightgrey; border-radius: 10px;">
+        <form action="/feedback" method="post">
+            <h3>암기에 도움이 되셨나요??</h3>
+            <div style="display: inline-block; margin-right: 10px;" name="allScore">
+                <input type="radio" id="good" name="score" value="100">
+                <label for="good" class="feedback-button">Good</label><br>
+                <input type="radio" id="not-bad" name="score" value="50">
+                <label for="not-bad" class="feedback-button">Not bad</label><br>
+                <input type="radio" id="poor" name="score" value="0">
+                <label for="poor" class="feedback-button">Bad</label>
+            </div>
+            <br>
+            <textarea id="feedback-text" name="feedback-text" rows="4" cols="50" placeholder="피드백을 남겨주시면 서비스에 큰 도움이 됩니다." ></textarea>
+            <br>
+            <input type="submit" class="feedback-submit" name="feedback-submit" value="Post Feedback">
+        </form>
+    </div>
+    <form action="/feedback" method="post">
+        <a href="/" class="button">Home 돌아가기</a>
+    </form>
+</body>
+</html>
+
+<style>
+  
+
+    .answer {
+       text-align: center; /* Center the text */
+       font-family: Arial, sans-serif; /* Use a neat-looking font */
+       color: #333; /* Dark gray color for the text */
+       padding: 20px; /* Add some space around the text */
+       margin: auto; /* Center the div itself if it has a specified width */
+       width: 50%; /* Specify a width if you want to center the div itself */
+       box-shadow: 0px 0px 10px rgba(0,0,0,0.1); /* Optional: Add a subtle shadow for a "card" effect */
+   }
+   
+   .answer h1 {
+       margin-bottom: 20px; /* Add some space below the title */
+   }
+   
+   .answer p {
+       margin-bottom: 10px; /* Add some space between paragraphs */
+   } 
+     </style>
