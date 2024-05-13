@@ -1,12 +1,10 @@
 import openai
 import os 
 from dotenv import load_dotenv #코드를 받아서 빌드하는 방법 사용
+
 from flask import Flask, request
 
 app = Flask(__name__)
-
-
-
 load_dotenv()  # take environment variables from .env.
 gpt_key = os.getenv('GPT_KEY')
 
@@ -15,6 +13,7 @@ openai.api_key = gpt_key
 client = openai.Client(api_key=gpt_key)
 
 PROFANITY_FILTER = ["fuck", "shit", "ㅅㅂ"]  # 욕설 입력 필터링
+
 
 @app.route('/generate', methods=['POST'])
 def generate():
@@ -42,5 +41,4 @@ def generate_explanation(word, meaning):
     )
 
     return completion.choices[0].message.content
-
 
