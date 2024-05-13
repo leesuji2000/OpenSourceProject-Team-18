@@ -89,20 +89,69 @@ def index():
     
     return render_template('index.html')
 
-@app.route('/check', methods=['GET'])
+@app.route('/check100', methods=['GET'])
 def check():
     # Query the MongoDB
     words = db.users.find()
     feedbacks = db.feedback.find()
 
     # Print the results
-    for word in words:
-        print(word)
-    for feedback in feedbacks:
-        print(feedback)
+    # for word in words:
+    #     print(word)
+    # for feedback in feedbacks:
+    #     print(feedback.get('feedback'))   
+    # for feedback in feedbacks:
+    #     print(feedback.get('score')) 
+    count_100 = 0
     
+    print('100점 받은 피드백') 
+    print('-----------------')
+    for feedback in feedbacks:
+        
+        if feedback.get('score') == '100':
+            print(feedback)
+            count_100 += 1
+    print(count_100)
+      
 
     return '콘솔에서 DB 확인하셈', 200
+
+@app.route('/check50', methods=['GET'])
+def check50():
+    
+    
+    feedbacks = db.feedback.find()
+    count_50 = 0
+    
+    print('50점 받은 피드백') 
+    print('-----------------')
+    for feedback in feedbacks:
+        
+        if feedback.get('score') == '50':
+            print(feedback)
+            count_50 += 1
+    print(count_50)
+      
+    return '콘솔에서 DB 확인하셈', 200
+
+
+@app.route('/check0', methods=['GET'])
+def check0():
+    
+    feedbacks = db.feedback.find()
+    count_0 = 0
+    
+    print('0점 받은 피드백') 
+    print('-----------------')
+    for feedback in feedbacks:
+        
+        if feedback.get('score') == '0':
+            print(feedback)
+            count_0 += 1
+    print(count_0)
+      
+    return '콘솔에서 DB 확인하셈', 200
+
 
 
 @app.route('/feedback', methods=['GET', 'POST'])
