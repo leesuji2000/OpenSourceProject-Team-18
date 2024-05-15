@@ -2,8 +2,6 @@ import openai
 import os 
 from dotenv import load_dotenv #코드를 받아서 빌드하는 방법 사용
 from flask import Flask, request
-prefixes = sorted(['dis', 'un', 're', 'pre', 'mis', 'sub', 'inter', 'semi', 'anti', 'de', 'trans', 'super', 'under', 'over'],
-                      key=len, reverse=True)
 
 
 app = Flask(__name__)
@@ -11,7 +9,6 @@ load_dotenv()  # take environment variables from .env.
 gpt_key = os.getenv('GPT_KEY')
 
 
-openai.api_key = gpt_key
 client = openai.Client(api_key=gpt_key)
 
 PROFANITY_FILTER = ["fuck", "shit", "ㅅㅂ"]  # 욕설 입력 필터링
@@ -52,24 +49,20 @@ def generate_explanation(word, meaning):
     prefixes = sorted(prefixes, key=lambda x: len(x[0]), reverse=True) #길이가 긴 순서대로 정렬
     for prefix in prefixes:
         if word.startswith(prefix[0]):
-            prefix_meaning = prefix[1]
             base_word = word[len(prefix[0]):]
-            completion = client.chat.completions.create( 
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": f"You are a helpful assistant that uses mnemonic and other memory techniques to help users remember English words. Your responses should be in Korean."},
-                {"role": "user", "content": f"What's a good way to remember the word '{word}'?"},
-                {"role": "assistant", "content": f"A good way to remember the word '{word}' is to break it down into its parts '{prefix[0]}'('{prefix_meaning}'), and '{base_word}'"}
+            messages = [
+                {"role": "system", "content": f"You are a helpful assistant that uses etymology using English '{prefix[0]}' ({prefix[1]}) and '{base_word}' to help users understand the origin of English words. Your responses should be in Korean."},
+                {"role": "user", "content": f"What's the origin of the word '{word}'?"},
             ]
-            )
             break
         else:
-            completion = client.chat.completions.create( 
-            model="gpt-3.5-turbo",
-            messages=[
+            messages = [
                 {"role": "system", "content": "You are a helpful assistant that uses mnemonic and other memory techniques to help users remember English words. Your responses should be in Korean."},
                 {"role": "user", "content": f"What's a good way to remember the word '{word}'?"}
-                ]
-            )
+            ]
+    completion = client.chat.completions.create( 
+        model="gpt-3.5-turbo",
+        messages=messages
+    )
 
     return completion.choices[0].message.content
