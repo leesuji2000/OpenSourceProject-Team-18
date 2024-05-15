@@ -1,8 +1,10 @@
 import openai
 import os 
 from dotenv import load_dotenv #코드를 받아서 빌드하는 방법 사용
-
 from flask import Flask, request
+prefixes = sorted(['dis', 'un', 're', 'pre', 'mis', 'sub', 'inter', 'semi', 'anti', 'de', 'trans', 'super', 'under', 'over'],
+                      key=len, reverse=True)
+
 
 app = Flask(__name__)
 load_dotenv()  # take environment variables from .env.
@@ -31,14 +33,43 @@ def generate():
 def generate_explanation(word, meaning):
     # if word.lower() in PROFANITY_FILTER:
     #     return "Sorry, I can't assist with that."
-
-    completion = client.chat.completions.create( 
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant that uses mnemonic and other memory techniques to help users remember English words. Your responses should be in Korean."},
-            {"role": "user", "content": f"What's a good way to remember the word '{word}'?"}
-]
-    )
+    prefixes = [
+        ['dis', '반대 또는 부정'],
+        ['un', '부정'],
+        ['re', '다시, 반복'],
+        ['pre', '미리, -전에'],
+        ['mis', '잘못된, 부적절한'],
+        ['sub', '아래, -부'],
+        ['inter', '서로, 상호간'],
+        ['semi', '반'],
+        ['anti', '반대'],
+        ['de', '아래로, 벗어나는 것'],
+        ['trans', '-넘어서, 건너편'],
+        ['super', '위, 초-'],
+        ['under', '아래'],
+        ['over', '넘치는, 초과']
+    ]
+    prefixes = sorted(prefixes, key=lambda x: len(x[0]), reverse=True) #길이가 긴 순서대로 정렬
+    for prefix in prefixes:
+        if word.startswith(prefix[0]):
+            prefix_meaning = prefix[1]
+            base_word = word[len(prefix[0]):]
+            completion = client.chat.completions.create( 
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": f"You are a helpful assistant that uses mnemonic and other memory techniques to help users remember English words. Your responses should be in Korean."},
+                {"role": "user", "content": f"What's a good way to remember the word '{word}'?"},
+                {"role": "assistant", "content": f"A good way to remember the word '{word}' is to break it down into its parts '{prefix[0]}'('{prefix_meaning}'), and '{base_word}'"}
+            ]
+            )
+            break
+        else:
+            completion = client.chat.completions.create( 
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant that uses mnemonic and other memory techniques to help users remember English words. Your responses should be in Korean."},
+                {"role": "user", "content": f"What's a good way to remember the word '{word}'?"}
+                ]
+            )
 
     return completion.choices[0].message.content
-
