@@ -52,13 +52,13 @@ def generate_explanation(word, meaning):
             base_word = word[len(prefix[0]):]
             messages = [
                 {"role": "system", "content": f"You are a helpful assistant that uses etymology using English '{prefix[0]}' ({prefix[1]}) and '{base_word}' to help users understand the origin of English words. Your responses should be in Korean."},
-                {"role": "user", "content": f"What's the origin of the word '{word}'?"},
+                {"role": "user", "content": f"What's the origin of the word '{word}({meaning})'?"},
             ]
             break
         else:
             messages = [
                 {"role": "system", "content": "You are a helpful assistant that uses mnemonic and other memory techniques to help users remember English words. Your responses should be in Korean."},
-                {"role": "user", "content": f"What's a good way to remember the word '{word}'?"}
+                {"role": "user", "content": f"What's a good way to remember the word '{word}({meaning})'?"}
             ]
     completion = client.chat.completions.create( 
         model="gpt-3.5-turbo",

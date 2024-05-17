@@ -142,7 +142,7 @@ def feedback():
     if request.method == 'GET':
         word = request.args.get('word')
         meaning = request.args.get('meaning')
-        existing_word = db.bocas.find_one({"word": word})
+        existing_word = db.bocas.find_one({"word": word, "meaning": meaning})
         if existing_word:
             data = {
                 'english_word': word,
@@ -179,8 +179,24 @@ def select_meaning():
     word = request.form.get('word')
     print(selected_meaning)  # 선택된 의미를 출력
     print(word)
-    return f"You selected: {selected_meaning}"
 
+    if not word or not selected_meaning:
+        return '''
+            <script type="text/javascript">
+                alert("공백은 허용하지 않는다");
+                window.location.href = "/";
+            </script>
+            ''', 400
 
+    # 데이터베이스에서 단어와 의미가 일치하는 항목 검색
+    existing_word = db.bocas.find_one({"word": word, "meaning": selected_meaning})
+
+    # 기존 단어가 있는 경우
+    if existing_word:
+        return redirect(url_for('feedback', word=word, meaning=selected_meaning, associative_memory=existing_word['associative_memory']))
+    else:
+        # 새로운 단어와 의미를 데이터베이스에 추가
+        db.boca.insert_one({"word": word, "meaning": selected_meaning})
+        return redirect(url_for('feedback', word=word, meaning=selected_meaning))
     
 app.run(port=5000, debug=True)
