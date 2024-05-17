@@ -67,20 +67,6 @@ def index():
             # Insert the data into the MongoDB
             #existing_word = db.bocas.find_one({"word": word})
             
-
-            
-            """if existing_word:
-                return redirect(url_for('feedback', word=word, meaning=meaning, associative_memory=existing_word['associative_memory']))
-            else: 
-                db.boca.insert_one({"word": word, "meaning": meaning})
-            return redirect(url_for('feedback', word=word, meaning=meaning)) 
-        else:
-            return '''
-                <script type="text/javascript">
-                    alert("공백은 허용하지 않는다");
-                    window.location.href = "/";
-                </script>
-                ''', 400"""
     
     return render_template('index.html')
 
@@ -181,12 +167,20 @@ def feedback():
         db.feedback.insert_one({ "score": score, "feedback": feedback})
     return render_template('feedback.html', data=data)
 
-@app.route('/chooseMeaning', methods=['GET', 'POST'])
+@app.route('/chooseㅡmeaning', methods=['GET'])
 def choose_meaning():
-    if request.method == 'GET':
-        word = request.args.get('word')
-        meanings = request.args.getlist('meanings')  # 여러 의미를 리스트로 받음
+    word = request.args.get('word')
+    meanings = request.args.getlist('meanings')
+    return render_template('chooseMeaning.html', word=word, meanings=meanings)
 
-        return render_template('chooseMeaning.html', word=word, meanings=meanings)
+@app.route('/select-meaning', methods=['POST'])
+def select_meaning():
+    selected_meaning = request.form.get('selectedMeaning')
+    word = request.form.get('word')
+    print(selected_meaning)  # 선택된 의미를 출력
+    print(word)
+    return f"You selected: {selected_meaning}"
+
+
     
 app.run(port=5000, debug=True)

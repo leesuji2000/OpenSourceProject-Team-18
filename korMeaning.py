@@ -30,7 +30,3 @@ def kor_meaning_list(query_keyword):
         print("Please check your internet connection.")
     except Exception as e:
         print(f"An error occurred: {e}")
-
-keyword = "dictionary"
-definitions = kor_meaning_list(keyword)
-print(definitions)
