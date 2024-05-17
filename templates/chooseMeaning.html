@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>단어 뜻 선택</title>
+    <style>
+        .meaning-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: orange;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .meaning-button:hover {
+            background-color: #ff8c00;
+        }
+    </style>
+</head>
+<body>
+    <h2 id="word"></h2>
+
+    <div id="meanings">
+        <!-- 이 곳에 JavaScript를 사용하여 버튼을 동적으로 생성합니다. -->
+    </div>
+
+    <script>
+        // 서버에서 단어의 뜻을 가져오는 함수를 호출하고, 결과를 사용하여 버튼을 생성하는 코드를 작성합니다.
+        let word = "{{ word }}";
+        let meanings = JSON.parse('{{ meanings | tojson | safe }}');
+        document.getElementById('word').innerText = `단어의 뜻을 선택하세요: ${word}`;
+
+        for (let meaning of meanings) {
+            let button = document.createElement('button');
+            button.className = 'meaning-button';
+            button.innerText = meaning;
+            button.onclick = function() {
+                // 사용자가 버튼을 클릭하면 수행할 작업을 여기에 작성합니다.
+            };
+            document.getElementById('meanings').appendChild(button);
+        }
+    </script>
+</body>
+</html>

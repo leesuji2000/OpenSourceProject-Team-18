@@ -3,8 +3,8 @@ import re
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from flask_pymongo import PyMongo
-
-import example
+import example 
+import korMeaning
 
 
 
@@ -33,22 +33,21 @@ prohibited_words = ['sibal', 'ㅅㅂ', 'ㄱㅆㄲ', 'asshole', 'fuck']
 def index():
     if request.method == 'POST':
         word = request.form.get('word')
-        meaning = request.form.get('meaning')
-        if any(prohibited_word in word for prohibited_word in prohibited_words) or any(prohibited_word in meaning for prohibited_word in prohibited_words):
+        if any(prohibited_word in word for prohibited_word in prohibited_words):
             return '''
             <script type="text/javascript">
                 alert("욕하지 마라");
                 window.location.href = "/";
             </script>
             ''', 400
-        if ' ' in word or ' ' in meaning:
+        if ' ' in word:
             return '''
             <script type="text/javascript">
                 alert("공백은 허용하지 않는다");
                 window.location.href = "/";
             </script>
             ''', 400
-        if word and meaning:
+        if word:
             try:
                 word.encode('ascii')
                 if not word.isalpha():
@@ -60,21 +59,17 @@ def index():
                     window.location.href = "/";
                 </script>
                 ''', 400
-            if not re.match("[가-힣]+", meaning):
-                return '''
-                <script type="text/javascript">
-                    alert("뜻에 한국어로 똑바로 써라");
-                    window.location.href = "/";
-                </script>
-                ''', 400
             words.append(word)
-            meanings.append(meaning)
-            print(words)    
-            print(meanings) 
-             # Insert the data into the MongoDB
-            existing_word = db.bocas.find_one({"word": word})
+            print(words)
+            meanings = korMeaning.kor_meaning_list(word)
+            return redirect(url_for('choose_meaning', word=word, meanings=meanings))
+
+            # Insert the data into the MongoDB
+            #existing_word = db.bocas.find_one({"word": word})
             
-            if existing_word:
+
+            
+            """if existing_word:
                 return redirect(url_for('feedback', word=word, meaning=meaning, associative_memory=existing_word['associative_memory']))
             else: 
                 db.boca.insert_one({"word": word, "meaning": meaning})
@@ -85,7 +80,7 @@ def index():
                     alert("공백은 허용하지 않는다");
                     window.location.href = "/";
                 </script>
-                ''', 400
+                ''', 400"""
     
     return render_template('index.html')
 
@@ -186,4 +181,12 @@ def feedback():
         db.feedback.insert_one({ "score": score, "feedback": feedback})
     return render_template('feedback.html', data=data)
 
+@app.route('/chooseMeaning', methods=['GET', 'POST'])
+def choose_meaning():
+    if request.method == 'GET':
+        word = request.args.get('word')
+        meanings = request.args.getlist('meanings')  # 여러 의미를 리스트로 받음
+
+        return render_template('chooseMeaning.html', word=word, meanings=meanings)
+    
 app.run(port=5000, debug=True)
