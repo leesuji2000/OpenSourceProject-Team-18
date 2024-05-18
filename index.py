@@ -59,9 +59,15 @@ def index():
                     window.location.href = "/";
                 </script>
                 ''', 400
-            words.append(word)
-            print(words)
             meanings = korMeaning.kor_meaning_list(word)
+            if not meanings:
+                return '''
+                <script type="text/javascript">
+                    alert("해당 당어 뜻을 찾을 수 없다");
+                    window.location.href = "/";
+                </script>
+                ''', 400
+            words.append(word)
             return redirect(url_for('choose_meaning', word=word, meanings=meanings))
 
             # Insert the data into the MongoDB
