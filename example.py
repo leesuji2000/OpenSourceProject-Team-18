@@ -52,14 +52,14 @@ def generate_explanation(word, meaning):
         if word.startswith(prefix[0]):
             base_word = word[len(prefix[0]):]
             messages = [
-                {"role": "system", "content": f"You are a helpful assistant that uses etymology using English '{prefix[0]}' ({prefix[1]}) and '{base_word}' to help users understand English words. Your responses should be in Korean."},
-                {"role": "user", "content": f"What's the origin of the word '{word}({meaning})'? answer to Korean"}
+                {"role": "system", "content": f"접두사 '{prefix[0]}' ({prefix[1]})의 의미와 '{base_word}'를 사용하여 어원을 이해하는 데 도움이 되는 유용한 어시스턴트입니다. 답변은 한국어로 제공되어야 합니다."},
+                {"role": "user", "content": f"'{word}({meaning})'를 어떻게 외우는게 좋을까요? 한국어로 답변해주세요."}
             ]
             break
         else:
             messages = [
-                {"role": "system", "content": "You are a helpful assistant that uses mnemonic and other memory techniques to help users remember English words. Your responses should be in Korean."},
-                {"role": "user", "content": f"What's a good way to remember the word '{word}({meaning})'? answer to Korean"}
+                {"role": "system", "content": "영어 단어를 기억하는 데 도움이 되는 기억법과 기타 기술을 사용하는 유용한 어시스턴트입니다. 답변은 한국어로 제공되어야 합니다."},
+                {"role": "user", "content": f"'{word}({meaning})'라는 단어를 기억하는 좋은 방법은 무엇인가요? 한국어로 답변해주세요."}
             ]
     completion = client.chat.completions.create( 
         model="gpt-3.5-turbo",
