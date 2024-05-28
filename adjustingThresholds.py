@@ -2,7 +2,7 @@ import openai
 import os 
 import json
 import re
-from dotenv import load_dotenv #코드를 받아서 빌드하는 방법 사용
+from dotenv import load_dotenv # 코드를 받아서 빌드하는 방법 사용
 from WordList import goodWord
 from WordList import badWord
 import random
@@ -12,11 +12,9 @@ gpt_key = os.getenv('GPT_KEY')
 openai.api_key = gpt_key
 client = openai.Client(api_key=gpt_key)
 
-#리스트
+# 리스트
 badword = badWord.badword
 goodword = goodWord.goodword
-
-
 
 def generate_explanation(mess):
     messages = [
@@ -25,14 +23,12 @@ def generate_explanation(mess):
     completion = client.chat.completions.create( 
         model="gpt-3.5-turbo",
         messages=messages
-
     )
     return completion.choices[0].message.content
 
 def moderation(mess):
     response =  client.moderations.create(input = mess)
     return response.model_dump_json(indent = 2)
-
 
 def get_scores(word_list):
     scores = []
@@ -47,13 +43,13 @@ def find_threshold(good_scores, bad_scores, category):
 
     while max_threshold - min_threshold > 0.0001:  # 임계치 차이가 작아질 때까지 반복
         mid_threshold = (min_threshold + max_threshold) / 2
-        good_pass = all(score[category] <= mid_threshold for score in good_scores)
-        bad_pass = any(score[category] > mid_threshold for score in bad_scores)
+        good_pass = all(score[category] <= mid_threshold for score in good_scores) # 모든 점수가 임계치 이하인지 확인
+        bad_pass = any(score[category] > mid_threshold for score in bad_scores) # 하나라도 임계치를 넘는 점수가 있는지 확인
 
-        if good_pass and bad_pass:
-            max_threshold = mid_threshold
-        else:
-            min_threshold = mid_threshold
+        if good_pass and bad_pass: # 임계치를 넘는 점수가 있는 경우
+            max_threshold = mid_threshold # 임계치를 낮춰야 함
+        else: # 임계치를 넘는 점수가 없는 경우
+            min_threshold = mid_threshold # 임계치를 높여야 함
 
     return mid_threshold
 
@@ -65,9 +61,9 @@ def find_optimal_thresholds(good_scores, bad_scores, categories):
     
     return optimal_thresholds
 
-def sample_and_find_thresholds(goodword, badword, n, categories):
-    sampled_goodword = random.sample(goodword, n)
-    sampled_badword = random.sample(badword, n)
+def sample_and_find_thresholds(goodword, badword, goodWordNum, badWordNum, categories):
+    sampled_goodword = random.sample(goodword, goodWordNum)
+    sampled_badword = random.sample(badword, badWordNum)
     
     good_scores = get_scores(sampled_goodword)
     bad_scores = get_scores(sampled_badword)
@@ -79,8 +75,9 @@ def sample_and_find_thresholds(goodword, badword, n, categories):
 # 임계치를 구할 카테고리
 categories = ['harassment', 'hate', 'self_harm_intent', 'sexual', 'violence']
 
-# 각 리스트에서 n개를 샘플링하여 최적의 임계치 계산
-n = 10  # 예를 들어 10개의 샘플 사용
-optimal_thresholds = sample_and_find_thresholds(goodword, badword, n, categories)
+# 각 리스트에서 샘플링하여 최적의 임계치 계산
+goodWordNum = 10  # goodWord에서 샘플링할 개수
+badWordNum = 20  # badWord에서 샘플링할 개수
+optimal_thresholds = sample_and_find_thresholds(goodword, badword, goodWordNum, badWordNum, categories)
 
 print("Optimal Thresholds:", optimal_thresholds)
