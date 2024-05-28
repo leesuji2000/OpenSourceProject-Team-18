@@ -143,7 +143,7 @@ def generate_explanation(word, meaning):
                                                 1."사전에 있는 비슷한 발음 단어연상법", "사전에 있는 비슷한 철자 연상법", "합성어를 나눠서 뜻 설명" 중 가장 좋은 방법을 1개를 선택해.
                                                 2. 1번에서 선택한 방법을 활용하여 암기법을 설명해. 연상법일 경우 두 단어를 연상할 수 있는 이유를 설명해줘.
                                                 """},
-                {"role": "assistant", "content" : """Output : "비슷한 철자를 활용한 단어연상" 방법을 사용해보자.bait(미끼)를 외우기 위해 wait(기다리다)라는 단어를 생각해봐. 이는 물고기가 bait(미끼)를 물 때까지 wait한다는 것을 떠울릴 수 있어!"""},
+                {"role": "assistant", "content" : """Output : bait을 외우기 위해 "비슷한 철자를 활용한 단어연상" 방법을 사용해보자.bait(미끼)를 외우기 위해 wait(기다리다)라는 단어를 생각해봐. 이는 물고기가 bait(미끼)를 물 때까지 wait한다는 것을 떠울릴 수 있어!"""},
                 {"role": "user", "content": f"'{word}({meaning})'라는 단어를 기억하는 좋은 방법은 뭐야? 한국어로 답변해줘."}
             ]
     completion = client.chat.completions.create( 
