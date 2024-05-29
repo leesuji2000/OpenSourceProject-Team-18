@@ -10,8 +10,10 @@
         <h1>Boca Database</h1>
         <p>영어단어: {{ data.english_word }}</p>
         <p>뜻: {{ data.meaning }}</p>
-        <p>연상기억법: {{ data.associative_memory }}</p>
-        
+        <h2>연상기억법</h2>
+        <div class="memory-technique">
+            <p>{{ data.associative_memory | safe }}</p>
+        </div>
     </div>
 
     <div class="feedback" style="margin: 20px; padding: 20px; background-color: lightgrey; border-radius: 10px;">
@@ -38,8 +40,6 @@
 </html>
 
 <style>
-  
-
     .answer {
        text-align: center; /* Center the text */
        font-family: Arial, sans-serif; /* Use a neat-looking font */
@@ -57,4 +57,22 @@
    .answer p {
        margin-bottom: 10px; /* Add some space between paragraphs */
    } 
-     </style>
+
+   .memory-technique {
+       text-align: left; /* Align the text to the left */
+       margin: 20px auto; /* Center the div itself */
+       width: 100%; /* Full width */
+   }
+
+   h2 {
+       color: #007BFF; /* Blue color for the title */
+       font-size: 1.5em; /* Larger font size for the title */
+       margin-bottom: 10px; /* Add some space below the title */
+   }
+
+   .memory-technique p {
+       text-align: left; /* Align text to the left */
+       margin-bottom: 20px; /* Add some space below the content */
+       line-height: 1.6; /* Increase line height for readability */
+   }
+</style>
