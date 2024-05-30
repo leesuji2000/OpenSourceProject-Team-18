@@ -5,6 +5,7 @@ from pymongo import MongoClient
 from flask_pymongo import PyMongo
 import example 
 import korMeaning
+import markdown
 
 
 
@@ -144,7 +145,6 @@ def check0():
 @app.route('/feedback', methods=['GET', 'POST'])
 def feedback():
     data = None
-    
     if request.method == 'GET':
         word = request.args.get('word')
         meaning = request.args.get('meaning')
@@ -162,6 +162,7 @@ def feedback():
                 'associative_memory': example.generate_explanation(word, meaning)
             }
             db.bocas.insert_one({"word": word, "meaning": meaning, "associative_memory": data['associative_memory']})
+        data['associative_memory'] = markdown.markdown(data['associative_memory'])
     
     if request.method == 'POST':
         score = request.form.get('score')
