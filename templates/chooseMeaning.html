@@ -62,7 +62,7 @@
         for (let meaning of meanings) {
             // 각 뜻에 대해 별도의 폼 생성
             let form = document.createElement('form');
-            form.action = '/select-meaning';  // 데이터를 전송할 서버의 URL
+            form.action = '/select_meaning';  // 데이터를 전송할 서버의 URL
             form.method = 'POST';
 
             // 단어 정보도 숨겨진 필드로 폼에 추가
@@ -77,7 +77,7 @@
             button.type = 'submit';
             button.className = 'meaning-button';
             button.innerText = meaning;
-            button.name = 'selectedMeaning';  // 폼 데이터로 전송될 이름
+            button.name = 'selected_meaning';  // 폼 데이터로 전송될 이름
             button.value = meaning;  // 폼 데이터로 전송될 값
 
             // // 버튼 클릭 시 이미지 보이기
@@ -88,7 +88,7 @@
             button.type = 'submit';
             button.className = 'meaning-button';
             button.innerText = meaning;
-            button.name = 'selectedMeaning';  // 폼 데이터로 전송될 이름
+            button.name = 'selected_meaning';  // 폼 데이터로 전송될 이름
             button.value = meaning;  // 폼 데이터로 전송될 값
 
             // 버튼 클릭 시 모든 이미지 보이기
