@@ -17,16 +17,25 @@ def index():
         #if validation_error:
         #    return validation_error
 
-        meanings = get_korean_meaning.kor_meaning_list(word)
-        if not meanings:
+        #result code 0: success, 1: suggestion, 2: not found
+        meanings, resultCode = get_korean_meaning.kor_meaning_list(word)
+        print(resultCode)
+        if(resultCode == 0):
+            mainString = "암기법을 보고 싶은 단어의 뜻을 선택해주세요"
+        elif(resultCode == 1):
+            newWord = meanings.pop()
+            mainString = f"{word}을(를) {newWord}으로 수정한 결과입니다. 뜻을 선택하시거나 철자를 확인해주세요"
+            word = newWord
+        else:
             return '''
             <script type="text/javascript">
                 alert("해당 단어 뜻을 찾을 수 없습니다");
                 window.location.href = "/";
             </script>
             ''', 400
-        return redirect(url_for('main.choose_meaning', word=word, meanings=meanings))
+        return redirect(url_for('main.choose_meaning', word=word, meanings=meanings, mainString = mainString))
     return render_template('index.html')
+    
 
 
 
@@ -34,4 +43,5 @@ def index():
 def choose_meaning():
     word = request.args.get('word')
     meanings = request.args.getlist('meanings')
-    return render_template('chooseMeaning.html', word=word, meanings=meanings)
+    mainString = request.args.get('mainString')
+    return render_template('chooseMeaning.html', word=word, meanings=meanings, mainString = mainString)

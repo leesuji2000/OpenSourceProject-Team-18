@@ -16,7 +16,6 @@
             background-color: #ff8c00;
         }
         .feedback-message {
-           
             margin-top: 20px;
         }
         #img img {
@@ -30,11 +29,9 @@
     </style>
 </head>
 <body>
+    <h3 id="mainString" style="color: rgb(87, 148, 192);"></h3>
     <h2 id="word"></h2>
     <div id="meanings"></div>
-    <p></p>
-    
-    <p></p>
     <div class="feedback-message">
         단어를 잘못 입력하셨나요? <a href="/">다시 입력</a>해주세요.
      </div>
@@ -56,8 +53,11 @@
     
     <script>
         let word = "{{ word }}";  // 서버로부터 받은 단어
+        let mainString = "{{ mainString }}";
         let meanings = JSON.parse('{{ meanings | tojson | safe }}');  // 서버로부터 받은 뜻 리스트
-        document.getElementById('word').innerText = `단어의 뜻을 선택하세요: ${word}`;
+        document.getElementById('mainString').innerText = mainString;
+        document.getElementById('word').innerText = `단어 : ${word}`;
+        
     
         for (let meaning of meanings) {
             // 각 뜻에 대해 별도의 폼 생성
@@ -98,9 +98,6 @@
                     img.style.display = 'block';
                 }
             });
-
-
-
 
             // 폼에 버튼 추가 후, meanings div에 폼 추가
             form.appendChild(button);
