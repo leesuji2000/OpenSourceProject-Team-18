@@ -1,12 +1,21 @@
 from bs4 import BeautifulSoup
 import re
 import requests
+from check_word_validation.filtering import filter_message
+from check_word_validation.moderation import checkModeration
 
+
+#result code 0: success, 1: suggestion, 2: not found, 3: korean word, 4: filtering error, 5: empty word
 def search_daum_dic(query_keyword):
     dic_url = "http://dic.daum.net/search.do?q={0}"
     r = requests.get(dic_url.format(query_keyword))
     soup = BeautifulSoup(r.text, "html.parser")
-    
+    if(query_keyword == ""):
+        return [], 5
+    elif not re.match(r'^[a-zA-Z\s]+$', query_keyword):
+        return [], 3
+    elif(filter_message(query_keyword) or checkModeration(query_keyword)):
+        return [], 4
     # Check if the suggestion box with "혹시, 이것을 찾으세요?" is present
     suggestion_box = soup.find('strong', class_='tit_speller')
     if suggestion_box and "혹시, 이것을 찾으세요?" in suggestion_box.get_text():
@@ -18,6 +27,7 @@ def search_daum_dic(query_keyword):
             definitions = get_meaning_list("daum", result_means)
             return definitions + [first_suggested_word], 1
     
+
     result_means = soup.find_all(attrs={'class': 'cleanword_type kuek_type'})
     if result_means:
         definitions = get_meaning_list("daum", result_means)
@@ -44,5 +54,3 @@ def kor_meaning_list(query_keyword):
         print("Please check your internet connection.")
     except Exception as e:
         print(f"An error occurred: {e}")
-
-print(kor_meaning_list("test"))

@@ -1,10 +1,13 @@
 import openai
 import os 
 import json
-import re
+import sys
 from dotenv import load_dotenv # 코드를 받아서 빌드하는 방법 사용
-from WordList import goodWord
-from WordList import badWord
+
+
+#src 폴더의 경로를 sys.path에 추가
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from src.word_list import badWord, goodWord
 import random
 
 load_dotenv()
@@ -15,16 +18,6 @@ client = openai.Client(api_key=gpt_key)
 # 리스트
 badword = badWord.badword
 goodword = goodWord.goodword
-
-def generate_explanation(mess):
-    messages = [
-        {"role": "system", "content": mess}
-    ]
-    completion = client.chat.completions.create( 
-        model="gpt-3.5-turbo",
-        messages=messages
-    )
-    return completion.choices[0].message.content
 
 def moderation(mess):
     response =  client.moderations.create(input = mess)
@@ -76,8 +69,8 @@ def sample_and_find_thresholds(goodword, badword, goodWordNum, badWordNum, categ
 categories = ['harassment', 'hate', 'self_harm_intent', 'sexual', 'violence']
 
 # 각 리스트에서 샘플링하여 최적의 임계치 계산
-goodWordNum = 10  # goodWord에서 샘플링할 개수
-badWordNum = 20  # badWord에서 샘플링할 개수
+goodWordNum = 300  # goodWord에서 샘플링할 개수
+badWordNum = 300  # badWord에서 샘플링할 개수
 optimal_thresholds = sample_and_find_thresholds(goodword, badword, goodWordNum, badWordNum, categories)
 
 print("Optimal Thresholds:", optimal_thresholds)

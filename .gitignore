@@ -23,3 +23,18 @@ TestResults.xml
 
 
 .env
+src/__pycache__/__init__.cpython-311.pyc
+src/__pycache__/get_korean_meaning.cpython-311.pyc
+src/generate_explanation/__pycache__/__init__.cpython-311.pyc
+src/generate_explanation/__pycache__/find_similar_word.cpython-311.pyc
+src/routes/__pycache__/chooseMeaning_routes.cpython-311.pyc
+src/routes/__pycache__/feedback_routes.cpython-311.pyc
+src/routes/__pycache__/main_routes.cpython-311.pyc
+src/word_list/__pycache__/__init__.cpython-311.pyc
+src/word_list/__pycache__/badWord.cpython-311.pyc
+src/word_list/__pycache__/goodWord.cpython-311.pyc
+src/word_list/__pycache__/prefix.cpython-311.pyc
+.env
+src/check_word_validation/__pycache__/__init__.cpython-311.pyc
+src/check_word_validation/__pycache__/filtering.cpython-311.pyc
+src/check_word_validation/__pycache__/moderation.cpython-311.pyc

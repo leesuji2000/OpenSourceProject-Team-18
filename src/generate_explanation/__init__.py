@@ -27,7 +27,7 @@ def generate_explanation(word, meaning):
             base_word = word[len(prefix[0]):]
             print("case1")
             messages = [
-                {"role": "system", "content": f"""너는 지금부터 한국인 어린이 영어 선생님이야. 영어 접두사 '{prefix[0]}' ({prefix[1]})의 뜻과 '{base_word}'를 사용하여 단어를 외우는 법을 알려줘. 반드시 \\n으로 줄바꿈을 표시해줘"""},
+                {"role": "system", "content": f"""너는 지금부터 한국인 어린이 영어 선생님이야. '{word}'가 영어 접두사 '{prefix[0]}' ({prefix[1]})로 이루어졌다면 뜻과 '{base_word}'를 사용하여 단어를 외우는 법을 알려줘 아니면 "비슷한 철자 연상법"을 사용해줘. """},
                 {"role": "assistant", "content" : """Output : commemorate(기념하다)는 com-(함께)와 memorize(기억하다)의 합성어야.
                                                             많은 사람들과 기억한다는 것은 곧 기념한다는 것을 떠올릴 수 있어!"""},
                 {"role": "user", "content": f"'{word}({meaning})'는 어원법으로 어떻게 외우는게 좋을까요?"}
