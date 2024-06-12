@@ -41,9 +41,10 @@ def index():
             </script>
             ''', 400
         elif(resultCode == 4):
-            return '''
+            filterMessage = meanings.pop()
+            return f'''
             <script type="text/javascript">
-                alert("필터링에 걸린 단어입니다");
+                alert("필터링에 걸린 단어입니다. {filterMessage}");
                 window.location.href = "/";
             </script>
             ''', 400

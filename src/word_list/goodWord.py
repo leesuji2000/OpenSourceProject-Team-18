@@ -1,6 +1,6 @@
 #출처 : 서울교육청 어린이 교과서 필수 영단어
 goodword = [
-    "a", "about", "across", "act", "actor", "address", "afraid", "after", "afternoon", "again", "age", "ago", "air", "airplane", "airport",
+    "about", "across", "act", "actor", "address", "afraid", "after", "afternoon", "again", "age", "ago", "air", "airplane", "airport",
     "album", "all", "along", "always", "among", "an", "and", "angry", "animal", "answer", "any", "apartment", "apple", "arm", "around",
     "arrive", "as", "ask", "at", "aunt", "autumn", "away", "baby", "back", "bad", "bag", "ball", "balloon", "banana", "band", "bank", "base",
     "basket", "bath", "be", "beach", "bear", "beautiful", "because", "become", "bed", "before", "begin", "behind", "bell", "below", "bench",

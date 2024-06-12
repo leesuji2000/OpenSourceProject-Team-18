@@ -14,8 +14,7 @@ def search_daum_dic(query_keyword):
         return [], 5
     elif not re.match(r'^[a-zA-Z\s]+$', query_keyword):
         return [], 3
-    elif(filter_message(query_keyword) or checkModeration(query_keyword)):
-        return [], 4
+    
     # Check if the suggestion box with "혹시, 이것을 찾으세요?" is present
     suggestion_box = soup.find('strong', class_='tit_speller')
     if suggestion_box and "혹시, 이것을 찾으세요?" in suggestion_box.get_text():
@@ -25,12 +24,22 @@ def search_daum_dic(query_keyword):
             first_suggested_word = first_suggestion.get_text()
             result_means = soup.find_all(attrs={'class': 'cleanword_type kuek_type'})
             definitions = get_meaning_list("daum", result_means)
+
+            #수정된 단어에 대한 모더레이션 적용
+            if(filter_message(first_suggested_word)):
+                return ["(부적절한 단어 감지)"], 4
+            elif(checkModeration(first_suggested_word)):
+                return ["(모더레이션 적용)"], 4
             return definitions + [first_suggested_word], 1
     
 
     result_means = soup.find_all(attrs={'class': 'cleanword_type kuek_type'})
     if result_means:
         definitions = get_meaning_list("daum", result_means)
+        if(filter_message(query_keyword)):
+            return ["(부적절한 단어 감지)"], 4
+        elif(checkModeration(query_keyword)):
+            return ["(모더레이션 적용)"], 4
         return definitions, 0
     
     return [], 2
