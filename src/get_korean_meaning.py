@@ -1,11 +1,19 @@
 from bs4 import BeautifulSoup
 import re
 import requests
+from check_word_validation.filtering import filter_message
+from check_word_validation.moderation import checkModeration
 
+
+#result code 0: success, 1: suggestion, 2: not found, 3: korean word, 4: filtering error, 5: empty word
 def search_daum_dic(query_keyword):
     dic_url = "http://dic.daum.net/search.do?q={0}"
     r = requests.get(dic_url.format(query_keyword))
     soup = BeautifulSoup(r.text, "html.parser")
+    if(query_keyword == ""):
+        return [], 5
+    elif not re.match(r'^[a-zA-Z\s]+$', query_keyword):
+        return [], 3
     
     # Check if the suggestion box with "혹시, 이것을 찾으세요?" is present
     suggestion_box = soup.find('strong', class_='tit_speller')
@@ -16,11 +24,22 @@ def search_daum_dic(query_keyword):
             first_suggested_word = first_suggestion.get_text()
             result_means = soup.find_all(attrs={'class': 'cleanword_type kuek_type'})
             definitions = get_meaning_list("daum", result_means)
+
+            #수정된 단어에 대한 모더레이션 적용
+            if(filter_message(first_suggested_word)):
+                return ["(부적절한 단어 감지)"], 4
+            elif(checkModeration(first_suggested_word)):
+                return ["(모더레이션 적용)"], 4
             return definitions + [first_suggested_word], 1
     
+
     result_means = soup.find_all(attrs={'class': 'cleanword_type kuek_type'})
     if result_means:
         definitions = get_meaning_list("daum", result_means)
+        if(filter_message(query_keyword)):
+            return ["(부적절한 단어 감지)"], 4
+        elif(checkModeration(query_keyword)):
+            return ["(모더레이션 적용)"], 4
         return definitions, 0
     
     return [], 2
@@ -44,5 +63,3 @@ def kor_meaning_list(query_keyword):
         print("Please check your internet connection.")
     except Exception as e:
         print(f"An error occurred: {e}")
-
-print(kor_meaning_list("test"))

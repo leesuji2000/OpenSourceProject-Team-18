@@ -7,16 +7,15 @@
 </head>
 <body>
     <div class="answer">
-        <h1>Boca Database</h1>
-        <p>영어단어: {{ data.english_word }}</p>
-        <p>뜻: {{ data.meaning }}</p>
-        <h2>연상기억법</h2>
+        <h2 style="color: #007BFF; font-size: 1.5em; margin-bottom: 10px;">Boca Database</h2>
+        <h3>{{ data.english_word }} ({{ data.meaning }})</h3>
+        <h3>연상기억법</h3> 
         <div class="memory-technique">
             <p>{{ data.associative_memory | safe }}</p>
         </div>
     </div>
 
-    <div class="feedback" style="margin: 20px; padding: 20px; background-color: lightgrey; border-radius: 10px;">
+    <div class="feedback" style="margin: 10px; padding: 10px; background-color: lightgrey; border-radius: 10px;"> <!-- margin과 padding을 줄여서 높이 조절 -->
         <form action="/feedback" method="post">
             <h3>암기에 도움이 되셨나요??</h3>
             <div style="display: inline-block; margin-right: 10px;" name="allScore">
@@ -41,38 +40,44 @@
 
 <style>
     .answer {
-       text-align: center; /* Center the text */
-       font-family: Arial, sans-serif; /* Use a neat-looking font */
-       color: #333; /* Dark gray color for the text */
-       padding: 20px; /* Add some space around the text */
-       margin: auto; /* Center the div itself if it has a specified width */
-       width: 50%; /* Specify a width if you want to center the div itself */
-       box-shadow: 0px 0px 10px rgba(0,0,0,0.1); /* Optional: Add a subtle shadow for a "card" effect */
+       text-align: center; /* 텍스트를 중앙 정렬 */
+       font-family: Arial, sans-serif; /* 깔끔한 폰트 사용 */
+       color: #333; /* 텍스트 색상을 어두운 회색으로 설정 */
+       padding: 30px; /* 텍스트 주위에 공간 추가 */
+       margin: auto; /* div 자체를 가운데 정렬 */
+       width: 90%; /* 너비를 늘림 */
+       box-shadow: 0px 0px 10px rgba(0,0,0,0.1); /* 섬세한 그림자 효과 추가 */
    }
    
    .answer h1 {
-       margin-bottom: 20px; /* Add some space below the title */
+       margin-bottom: 20px; /* 제목 아래에 공간 추가 */
    }
    
    .answer p {
-       margin-bottom: 10px; /* Add some space between paragraphs */
+       margin-bottom: 10px; /* 문단 간 공간 추가 */
    } 
 
    .memory-technique {
-       text-align: left; /* Align the text to the left */
-       margin: 20px auto; /* Center the div itself */
-       width: 100%; /* Full width */
+       text-align: left; /* 텍스트를 왼쪽 정렬 */
+       margin: 20px auto; /* div를 중앙에 위치 */
+       width: 100%; /* 너비를 100%로 설정 */
    }
 
-   h2 {
-       color: #007BFF; /* Blue color for the title */
-       font-size: 1.5em; /* Larger font size for the title */
-       margin-bottom: 10px; /* Add some space below the title */
-   }
+h2 {
+    font-size: 1em;
+    color: rgb(32, 142, 2);
+    margin-bottom: 10px;
+}
 
-   .memory-technique p {
-       text-align: left; /* Align text to the left */
-       margin-bottom: 20px; /* Add some space below the content */
-       line-height: 1.6; /* Increase line height for readability */
+   .memory-technique {
+       text-align: left; /* 텍스트를 왼쪽 정렬 */
+       margin: 15px auto; /* div를 중앙에 위치 */
+       width: 100%; /* 전체 너비 사용 */
+       max-height: 300px; /* 최대 높이를 300px로 설정 */
+       overflow: auto; /* 내용이 넘칠 경우 스크롤바 표시 */
+       border: 2px solid #d9ebfd; /* 테두리 색상을 파란색으로 설정 */
+       border-radius: 8px; /* 모서리를 부드럽게 처리 */
+       padding: 4px; /* 내부 여백을 추가 */
+       box-shadow: 0px 4px 8px rgba(0,0,0,0.1); /* 박스 그림자 효과 추가 */
    }
 </style>
