@@ -2,11 +2,61 @@
  link 적어주세요
 
 ## 최종 발표 자료 링크:
-https://youtu.be/-VfLoHE5HW8?si=UfoGIWWr3TbAz9Vo
 
  
 ## 주요 특징
- 프로젝트의 강조하고 싶으신 Key feature에 대해 적어주세요
+어린이에게 영단어 암기법을 제공하는 서비스입니다. 
+사용자가 입력한 영단어가 어린이에게 적합한 단어인 지 확인하고 적절한 프롬프트를 활용하여 암기법을 제공합니다.
+
+### 1. 상황별 다른 프롬프트 생성
+1. 사용자 입력 단어에 접두사가 있는 경우
+<img width="1695" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/877e5039-cb87-4140-9c2c-aa29743300dc">
+   (1) 해당하는 접두사를 활용하여 영단어 암기법을 추천합니다.
+   #
+<img width="1647" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/ba29ca56-802a-4345-84ec-03390f91d1c0">
+
+   (2) 사진과 같이 un- 접두사가 사용되었지만 뜻을 사용하지 않는 경우는 DB에 따로 저장하여 관리합니다.
+
+3. 사용자가 입력한 단어와 비슷한 철자의 단어가 교과서DB에 존재하는 경우
+<img width="1647" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/2015fbff-3a45-4e4b-9c8e-bd443ce54507">
+
+
+
+   - 교과서에서 어떤 단어를 사용하였는 지 명시해줍니다.
+   - 교과서에서 찾은 단어를 활용하여 연상암기법을 설명합니다.
+   - 설명한 내용을 토대로 쉬운 영어 예문을 작성합니다.
+   - 예문에 사용된 두 단어는 볼딩처리해서 뚜렷하게 만들었습니다.
+  
+
+4. 두 케이스 모두 아닌 경우 (일반적인 경우)
+<img width="1647" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/d51bc42d-27e3-42c2-a410-1b36c314406a">
+
+   gpt를 통해 암기법을 추천받고, 추천한 암기법을 활용하여 답변을 제공합니다.
+
+### 2. 모더레이션 강화
+1. 입력단어와 출력결과에 대한 필터링
+   1. 입력한 단어가 자주 사용되는 욕인 경우 : 정규표현을 통한 필터링
+   2. 입력한 단어가 모더레이션 조건을 통과하지 못하는 경우 :
+      (교과서DB 영어 욕DB에 맞춰 모더레이션 임계치 조정 완료)
+   3. 두 조건 모두 충족하지만 부적절한 단어인 경우 : 프롬프트 단에서 답변 거부
+      (필터링 결과는 아래에서 확인 가능)
+
+2. 예시사진
+- 아래 사진은 fuck (자주 사용하는 욕설)을 입력한 결과 뜨는 팝업창입니다.
+<img width="471" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/f6305b63-1027-4db7-8e3d-45faa980aa2f">
+
+
+
+- 아래 사진은 흑인비하 발언 niggar를 입력하였을때, 모더레이션을 이용하여 필터링된 팝업창입니다.
+<img width="471" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/e1fc70a8-eaca-461c-a1d6-3c20717ec444">
+
+
+- 아래 사진은 출력된 결과에 욕설이 있는 경우 프롬프트에서 답변을 거부한 결과입니다.
+<img width="1647" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/a78e6312-0dad-426a-bc55-046db0a9684f">
+
+
+
+
  
 ## 사용 설명
 
@@ -48,17 +98,9 @@ https://youtu.be/-VfLoHE5HW8?si=UfoGIWWr3TbAz9Vo
 
 - 영어입력창과 한글입력창에 목적과 다른 단어를 입력하면 알림을 통하여 제한하였습니다. 아래는 뜻 입력창에 영어를 썼을때의 알림입니다.
 
-  <img width="441" alt="127 0 0 15000 내용" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/5bc45e32-35bc-4cdc-837e-132dbf7e77df">
+  <img width="436" alt="127 0 0 15000 내용" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/5bc45e32-35bc-4cdc-837e-132dbf7e77df">
 
-- 욕설을 적는 경우에는 gpt moderation과 자주 사용하는 욕설 리스트 필터링을 이용하여 연상기억법을 제공하지 않도록 하였습니다.
-- 아래 사진은 fuck (자주 사용하는 욕설)을 입력한 결과 뜨는 팝업창입니다.
- <img width="332" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/01093144-4369-4a17-af19-cebae4606a3d">
 
-- 아래 사진은 흑인비하 발언 niggar를 입력하였을때, 모더레이션을 이용하여 필터링된 팝업창입니다.
-  <img width="392" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/ae042613-613d-4b86-aeab-54599ad1ab6b">
-
-- 아래 사진은 출력된 결과에 욕설이 있는 경우, 모더레이션을 이용하여 필터링된 결과입니다.
-  <img width="613" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/a2d0de59-bd0a-4f11-9dd8-a05fc16102a1">
 
 
 
