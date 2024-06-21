@@ -43,11 +43,13 @@
 
 2. 예시사진
 - 아래 사진은 fuck (자주 사용하는 욕설)을 입력한 결과 뜨는 팝업창입니다.
-<img width="485" alt="스크린샷 2024-06-22 오전 12 52 50" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/64e932b4-bdf0-4696-b758-b63df1e23d34">
+<img width="471" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/f6305b63-1027-4db7-8e3d-45faa980aa2f">
+
 
 
 - 아래 사진은 흑인비하 발언 niggar를 입력하였을때, 모더레이션을 이용하여 필터링된 팝업창입니다.
-  <img width="485" alt="스크린샷 2024-06-22 오전 12 52 26" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/588f9658-f909-452c-af27-0ea8d8b8dfe4">
+<img width="471" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/e1fc70a8-eaca-461c-a1d6-3c20717ec444">
+
 
 - 아래 사진은 출력된 결과에 욕설이 있는 경우 프롬프트에서 답변을 거부한 결과입니다.
 <img width="1647" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/a78e6312-0dad-426a-bc55-046db0a9684f">
