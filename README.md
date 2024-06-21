@@ -10,7 +10,7 @@
 
 ### 1. 상황별 다른 프롬프트 생성
 1. 사용자 입력 단어에 접두사가 있는 경우
-![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/049fca83-c926-4106-9f23-98b8dbb08b04)
+<img width="1695" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/877e5039-cb87-4140-9c2c-aa29743300dc">
    (1) 해당하는 접두사를 활용하여 영단어 암기법을 추천합니다.
    # 
 ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/1597f59b-b312-4e49-aee9-5d74dad55d3a)
