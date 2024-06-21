@@ -39,7 +39,9 @@
  <img width="332" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/01093144-4369-4a17-af19-cebae4606a3d">
 
 - 아래 사진은 흑인비하 발언 niggar를 입력하였을때, 모더레이션을 이용하여 필터링된 팝업창입니다.
-  <img width="392" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/ae042613-613d-4b86-aeab-54599ad1ab6b">
+ <img width="485" alt="스크린샷 2024-06-22 오전 12 52 50" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/1adf776c-fbbb-4710-93f5-b735b094c5e2">
+
+
 
 - 아래 사진은 출력된 결과에 욕설이 있는 경우, 모더레이션을 이용하여 필터링된 결과입니다.
   <img width="613" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/a2d0de59-bd0a-4f11-9dd8-a05fc16102a1">
