@@ -12,7 +12,6 @@
 1. 사용자 입력 단어에 접두사가 있는 경우
 <img width="1695" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/877e5039-cb87-4140-9c2c-aa29743300dc">
    (1) 해당하는 접두사를 활용하여 영단어 암기법을 추천합니다.
-   #
 <img width="1647" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/ba29ca56-802a-4345-84ec-03390f91d1c0">
 
    (2) 사진과 같이 un- 접두사가 사용되었지만 뜻을 사용하지 않는 경우는 DB에 따로 저장하여 관리합니다.
