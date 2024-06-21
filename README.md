@@ -18,7 +18,8 @@
    (2) 사진과 같이 un- 접두사가 사용되었지만 뜻을 사용하지 않는 경우는 DB에 따로 저장하여 관리합니다.
 
 3. 사용자가 입력한 단어와 비슷한 철자의 단어가 교과서DB에 존재하는 경우
-![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/d6162a3f-68c6-488b-8795-ad6700e4cd45)
+<img width="1647" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/2015fbff-3a45-4e4b-9c8e-bd443ce54507">
+
 
 
    - 교과서에서 어떤 단어를 사용하였는 지 명시해줍니다.
@@ -28,7 +29,8 @@
   
 
 4. 두 케이스 모두 아닌 경우 (일반적인 경우)
-![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/f1ccb709-c8a3-4ecd-a8c1-60b2df8bba9b)
+<img width="1647" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/d51bc42d-27e3-42c2-a410-1b36c314406a">
+
    gpt를 통해 암기법을 추천받고, 추천한 암기법을 활용하여 답변을 제공합니다.
 
 ### 2. 모더레이션 강화
@@ -48,7 +50,8 @@
   <img width="485" alt="스크린샷 2024-06-22 오전 12 52 26" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/588f9658-f909-452c-af27-0ea8d8b8dfe4">
 
 - 아래 사진은 출력된 결과에 욕설이 있는 경우 프롬프트에서 답변을 거부한 결과입니다.
-  <img width="613" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/a2d0de59-bd0a-4f11-9dd8-a05fc16102a1">
+<img width="1647" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/a78e6312-0dad-426a-bc55-046db0a9684f">
+
 
 
 
@@ -93,7 +96,7 @@
 
 - 영어입력창과 한글입력창에 목적과 다른 단어를 입력하면 알림을 통하여 제한하였습니다. 아래는 뜻 입력창에 영어를 썼을때의 알림입니다.
 
-  <img width="441" alt="127 0 0 15000 내용" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/5bc45e32-35bc-4cdc-837e-132dbf7e77df">
+  <img width="436" alt="127 0 0 15000 내용" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/5bc45e32-35bc-4cdc-837e-132dbf7e77df">
 
 
 
