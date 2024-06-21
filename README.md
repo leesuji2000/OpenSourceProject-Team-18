@@ -2,7 +2,8 @@
  link 적어주세요
 
 ## 최종 발표 자료 링크:
- link 적어 주세요
+https://youtu.be/-VfLoHE5HW8?si=UfoGIWWr3TbAz9Vo
+
  
 ## 주요 특징
  프로젝트의 강조하고 싶으신 Key feature에 대해 적어주세요
