@@ -13,7 +13,8 @@
    사진과 같이 un- 접두사가 사용되었지만 뜻을 사용하지 않는 경우는 DB에 따로 저장하여 관리합니다.
 
 2. 사용자가 입력한 단어와 비슷한 철자의 단어가 교과서DB에 존재하는 경우
-![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/eb6968fa-a2d0-4aaf-984b-5f6449ddbe22)
+![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/d6162a3f-68c6-488b-8795-ad6700e4cd45)
+
 
    - 교과서에서 어떤 단어를 사용하였는 지 명시해줍니다.
    - 교과서에서 찾은 단어를 활용하여 연상암기법을 설명합니다.
