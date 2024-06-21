@@ -5,7 +5,35 @@
  link 적어 주세요
  
 ## 주요 특징
- 프로젝트의 강조하고 싶으신 Key feature에 대해 적어주세요
+### 상황별 다른 프롬프트 생성
+1. 사용자 입력 단어에 접두사가 있는 경우
+   ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/049fca83-c926-4106-9f23-98b8dbb08b04)
+   해당하는 접두사를 활용하여 영단어 암기법을 추천합니다.
+   ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/1597f59b-b312-4e49-aee9-5d74dad55d3a)
+   사진과 같이 un- 접두사가 사용되었지만 뜻을 사용하지 않는 경우는 DB에 따로 저장하여 관리합니다.
+
+2. 사용자가 입력한 단어와 비슷한 철자의 단어가 교과서DB에 존재하는 경우
+   ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/2419c389-346a-4433-9980-b62b51500eb8)
+   - 교과서에서 어떤 단어를 사용하였는 지 명시해줍니다.
+   - 교과서에서 찾은 단어를 활용하여 연상암기법을 설명합니다.
+   - 설명한 내용을 토대로 쉬운 영어 예문을 작성합니다.
+   - 예문에 사용된 두 단어는 볼딩처리해서 뚜렷하게 만들었습니다.
+  
+
+3. 두 케이스 모두 아닌 경우 (일반적인 경우)
+   ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/f1ccb709-c8a3-4ecd-a8c1-60b2df8bba9b)
+   gpt를 통해 암기법을 추천받고, 추천한 암기법을 활용하여 답변을 제공합니다.
+
+### 모더레이션 강화
+1. 입력단어와 출력결과에 대한 필터링
+   1. 입력한 단어가 자주 사용되는 욕인 경우 : 정규표현을 통한 필터링
+   2. 입력한 단어가 모더레이션 조건을 통과하지 못하는 경우 :
+      (교과서DB 영어 욕DB에 맞춰 모더레이션 임계치 조정 완료)
+   3. 두 조건 모두 충족하지만 부적절한 단어인 경우 : 프롬프트 단에서 답변 거부
+   ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/cce32a3f-9033-464c-89f6-0e4437fe7c8f)
+
+
+
  
 ## 사용 설명
 
