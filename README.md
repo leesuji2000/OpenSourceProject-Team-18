@@ -1,5 +1,5 @@
 ## 데모 링크:
- link 적어주세요
+[https://b1d2-211-117-79-45.ngrok-free.app ]
 
 ## 최종 발표 자료 링크:
 [https://youtu.be/-VfLoHE5HW8?si=UfoGIWWr3TbAz9Vo]
