@@ -2,7 +2,7 @@
  link 적어주세요
 
 ## 최종 발표 자료 링크:
- link 적어 주세요
+[https://youtu.be/-VfLoHE5HW8?si=UfoGIWWr3TbAz9Vo]
  
 ## 주요 특징
 어린이에게 영단어 암기법을 제공하는 서비스입니다. 
