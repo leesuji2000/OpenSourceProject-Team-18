@@ -13,9 +13,10 @@
 ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/049fca83-c926-4106-9f23-98b8dbb08b04)
    해당하는 접두사를 활용하여 영단어 암기법을 추천합니다.
 ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/1597f59b-b312-4e49-aee9-5d74dad55d3a)
+# 
    사진과 같이 un- 접두사가 사용되었지만 뜻을 사용하지 않는 경우는 DB에 따로 저장하여 관리합니다.
 
-2. 사용자가 입력한 단어와 비슷한 철자의 단어가 교과서DB에 존재하는 경우
+3. 사용자가 입력한 단어와 비슷한 철자의 단어가 교과서DB에 존재하는 경우
 ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/d6162a3f-68c6-488b-8795-ad6700e4cd45)
 
 
