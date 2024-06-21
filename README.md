@@ -1,8 +1,13 @@
-## 데모링크
+## 데모 링크:
+ link 적어주세요
 
-https://32f8-125-178-179-68.ngrok-free.app
-
-## 사용설명
+## 최종 발표 자료 링크:
+ link 적어 주세요
+ 
+## 주요 특징
+ 프로젝트의 강조하고 싶으신 Key feature에 대해 적어주세요
+ 
+## 사용 설명
 
 ### 사용자
 - 이 서비스는 어린이를 대상으로 한 영어 단어 암기 서비스 입니다.
@@ -10,18 +15,30 @@ https://32f8-125-178-179-68.ngrok-free.app
 
 
 ### 서비스 이용 방법
-- 링크를 타고 들어가시면, **단어**와 **뜻**을 입력하는 창이 있습니다. 사용자가 외워야할 **단어**와 **뜻**을 입력하시면 됩니다.
+1. 첫페이지: 단어 입력창
+- 링크를 타고 들어가시면, **단어**를 입력하는 창이 있습니다. 사용자가 외워야할 **단어**를 입력하시면 됩니다.
+- 아래는 review 입력 예시입니다.
   
-  <img width="716" alt="Pasted Graphic" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/25ae8a51-033b-4a4f-864f-175898ae7b8b">
+  <img width="422" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/0ee98540-8bbc-4371-a71e-4b82abc62282">
 
-- 만일 **입력한 단어**가 DB에 있는 경우, DB에 저장되어 있는 연상기억법을 출력합니다.
+ 2. 단어 뜻 페이지: 원하는 단어 뜻 선택
+- 입력한 단어에 따라서 사전 크롤링을 통해서 가져온 단어의 뜻이 출력됩니다.
+- 외우고 싶은 단어를 선택합니다.
+- 아래는 review를 입력했을떄, 나오는 단어의 뜻입니다.
+
+  <img width="262" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/54c8cf86-f662-43f3-adab-460e91bb5e21">
+
+
+ 3. 연상 기억법 및 암기법 출력 페이지: 단어별로 다른 프롬프트 적용
+- 만일 **입력한 단어와 뜻**이 DB에 있는 경우, DB에 저장되어 있는 연상기억법을 출력합니다.
 - 만일 **입력한 단어**가 DB에 없는 경우, GPT가 입력한 단어와 뜻을 기반으로 연상기억법을 생성해줍니다.
-- 아래는 apple 입력 예시입니다.
-  
-  <img width="814" alt="Pasted Graphic 1" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/fde82946-c50e-4b67-896a-715a68121e0b">
-- 연상기억법이 출력된 후에 피드백을 남기실 수 있습니다.
+- 아래는 review 단어의 복습 뜻을 눌렀을때 출력된 결과입니다.
 
-  <img width="540" alt="• Not bad" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/d1558108-5242-46f2-a7fc-383f2609b365">
+  ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/9d529f10-dcb1-4c94-b881-5d006e4c42d1)
+
+- 단어에 따라서 다른 프롬프팅이 적용되며 그에 대한 내용은 위의 주요 특징에서 설명드렸으니 참고하시길 바랍니다.
+- 페이지 하단에서 텍스트를 이용하여 피드백을 남기실 수도 있습니다.
+  
 
 ### 서비스 이용 참고사항
 - 어린이를 대상으로 하는 영어단어 서비스이기 때문에, 어린어 영단어를 중심으로 DB를 구성하였습니다. 어린이 영단어에는 띄어쓰기가 필요 없기 때문에, 띄어쓰기가 포함된 입력은 알림을 통해서 제한하였습니다.
@@ -32,12 +49,15 @@ https://32f8-125-178-179-68.ngrok-free.app
 
   <img width="441" alt="127 0 0 15000 내용" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/5bc45e32-35bc-4cdc-837e-132dbf7e77df">
 
-- 욕설을 적는 경우에는 gpt moderation을 이용하여 연상기억법을 제공하지 않도록 하였습니다.
+- 욕설을 적는 경우에는 gpt moderation과 자주 사용하는 욕설 리스트 필터링을 이용하여 연상기억법을 제공하지 않도록 하였습니다.
+- 아래 사진은 fuck (자주 사용하는 욕설)을 입력한 결과 뜨는 팝업창입니다.
+ <img width="332" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/01093144-4369-4a17-af19-cebae4606a3d">
 
-  <img width="435" alt="Pasted Graphic 5" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/8e43625d-f5b7-405d-a25f-8125e52da2e4">
+- 아래 사진은 흑인비하 발언 niggar를 입력하였을때, 모더레이션을 이용하여 필터링된 팝업창입니다.
+  <img width="392" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/ae042613-613d-4b86-aeab-54599ad1ab6b">
 
-### 구현 계획
-- 보다 기억하기 쉬운 연상기억법 DB 구축
-- 신뢰가능한 moderation
-- 영단어 오타에 대한 유사도 검증
+- 아래 사진은 출력된 결과에 욕설이 있는 경우, 모더레이션을 이용하여 필터링된 결과입니다.
+  <img width="613" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/a2d0de59-bd0a-4f11-9dd8-a05fc16102a1">
+
+
 
