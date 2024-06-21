@@ -30,7 +30,18 @@
    2. 입력한 단어가 모더레이션 조건을 통과하지 못하는 경우 :
       (교과서DB 영어 욕DB에 맞춰 모더레이션 임계치 조정 완료)
    3. 두 조건 모두 충족하지만 부적절한 단어인 경우 : 프롬프트 단에서 답변 거부
-   ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/cce32a3f-9033-464c-89f6-0e4437fe7c8f)
+      (필터링 결과는 아래에서 확인 가능)
+
+2. 예시사진
+- 욕설을 적는 경우에는 gpt moderation과 자주 사용하는 욕설 리스트 필터링을 이용하여 연상기억법을 제공하지 않도록 하였습니다.
+- 아래 사진은 fuck (자주 사용하는 욕설)을 입력한 결과 뜨는 팝업창입니다.
+ <img width="332" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/01093144-4369-4a17-af19-cebae4606a3d">
+
+- 아래 사진은 흑인비하 발언 niggar를 입력하였을때, 모더레이션을 이용하여 필터링된 팝업창입니다.
+  <img width="392" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/ae042613-613d-4b86-aeab-54599ad1ab6b">
+
+- 아래 사진은 출력된 결과에 욕설이 있는 경우, 모더레이션을 이용하여 필터링된 결과입니다.
+  <img width="613" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/a2d0de59-bd0a-4f11-9dd8-a05fc16102a1">
 
 
 
@@ -77,15 +88,7 @@
 
   <img width="441" alt="127 0 0 15000 내용" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/5bc45e32-35bc-4cdc-837e-132dbf7e77df">
 
-- 욕설을 적는 경우에는 gpt moderation과 자주 사용하는 욕설 리스트 필터링을 이용하여 연상기억법을 제공하지 않도록 하였습니다.
-- 아래 사진은 fuck (자주 사용하는 욕설)을 입력한 결과 뜨는 팝업창입니다.
- <img width="332" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/01093144-4369-4a17-af19-cebae4606a3d">
 
-- 아래 사진은 흑인비하 발언 niggar를 입력하였을때, 모더레이션을 이용하여 필터링된 팝업창입니다.
-  <img width="392" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/ae042613-613d-4b86-aeab-54599ad1ab6b">
-
-- 아래 사진은 출력된 결과에 욕설이 있는 경우, 모더레이션을 이용하여 필터링된 결과입니다.
-  <img width="613" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/a2d0de59-bd0a-4f11-9dd8-a05fc16102a1">
 
 
 
