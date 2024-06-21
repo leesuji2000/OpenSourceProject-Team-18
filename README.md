@@ -7,21 +7,21 @@
 ## 주요 특징
 ### 상황별 다른 프롬프트 생성
 1. 사용자 입력 단어에 접두사가 있는 경우
-   ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/049fca83-c926-4106-9f23-98b8dbb08b04)
+![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/049fca83-c926-4106-9f23-98b8dbb08b04)
    해당하는 접두사를 활용하여 영단어 암기법을 추천합니다.
-   ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/1597f59b-b312-4e49-aee9-5d74dad55d3a)
+![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/1597f59b-b312-4e49-aee9-5d74dad55d3a)
    사진과 같이 un- 접두사가 사용되었지만 뜻을 사용하지 않는 경우는 DB에 따로 저장하여 관리합니다.
 
 2. 사용자가 입력한 단어와 비슷한 철자의 단어가 교과서DB에 존재하는 경우
-   ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/2419c389-346a-4433-9980-b62b51500eb8)
+![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/2419c389-346a-4433-9980-b62b51500eb8)
    - 교과서에서 어떤 단어를 사용하였는 지 명시해줍니다.
    - 교과서에서 찾은 단어를 활용하여 연상암기법을 설명합니다.
    - 설명한 내용을 토대로 쉬운 영어 예문을 작성합니다.
    - 예문에 사용된 두 단어는 볼딩처리해서 뚜렷하게 만들었습니다.
   
 
-3. 두 케이스 모두 아닌 경우 (일반적인 경우)
-   ![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/f1ccb709-c8a3-4ecd-a8c1-60b2df8bba9b)
+4. 두 케이스 모두 아닌 경우 (일반적인 경우)
+![image](https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/163505867/f1ccb709-c8a3-4ecd-a8c1-60b2df8bba9b)
    gpt를 통해 암기법을 추천받고, 추천한 암기법을 활용하여 답변을 제공합니다.
 
 ### 모더레이션 강화
@@ -33,7 +33,6 @@
       (필터링 결과는 아래에서 확인 가능)
 
 2. 예시사진
-- 욕설을 적는 경우에는 gpt moderation과 자주 사용하는 욕설 리스트 필터링을 이용하여 연상기억법을 제공하지 않도록 하였습니다.
 - 아래 사진은 fuck (자주 사용하는 욕설)을 입력한 결과 뜨는 팝업창입니다.
  <img width="332" alt="image" src="https://github.com/leesuji2000/OpenSourceProject-Team-18/assets/64798587/01093144-4369-4a17-af19-cebae4606a3d">
 
